@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8">
+    	<title>select menu</title>
+    	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    	<script src="/js/angular.js"></script>
+    	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    	<script>
+  		  		
+    		$(document).ready(function(){
+
+    				/*alert("check check");
+    				
+    				var MongoClient = require('mongodb').MongoClient, assert = require('assert');
+
+					// Connection URL
+					//var url = 'mongodb://localhost:27017/myproject';
+					//var url = 'mongodb://soliven25:m25892589@ds019268.mlab.com:19268/humanrsrc';
+					var url = 'mongodb://heroku_613qh8ph:heroku_613qh8ph@ds011419.mlab.com:11419/menu';
+					// Use connect method to connect to the Server
+
+					alert("check check");
+					MongoClient.connect(url, function(err, db) {
+
+						alert("first enter");
+  						assert.equal(null, err);
+  						console.log("Connected correctly to server");
+  						alert("mongodb connection fails");
+  						//db.close();
+					});
+
+					alert("mongodb connection check"); */
+    			
+    		});
+    		
+    	</script>
+    </head>
+	<body>
+		<table border = "0" align = "center">
+			<tr>
+				<td colspan = "3">
+					<h1>Select your food!</h1>
+				</td>
+			</tr>
+
+			<tr>
+				<td align = "center">
+ 					MENU!!!
+ 				</td>
+ 				<td align = "center">
+ 					EA
+ 				</td>
+ 				<td align = "center">
+ 				    NAME
+ 				</td>
+ 			 	<td rowspan = "2">
+ 					<input type="button" id="menubutton" value="ADD"/>
+ 				</td>
+ 			</tr>
+			<tr>
+				<td align = "center">
+ 					<select id = "menutext">
+ 						<option>Corn Bread</option>
+ 						<option>Instant Noodle</option>
+ 						<option>Cup Cake</option>
+ 						<option>Chow mein</option>
+ 						<option>치즈김밥</option>
+						<option>치킨</option>
+ 					</select>
+ 				</td>
+ 				<td align = "center">
+ 					<select id = "menunum">
+ 						<option>1</option>
+ 						<option>2</option>
+ 						<option>3</option>
+ 						<option>4</option>
+ 						<option>5</option>
+ 					</select>
+ 				</td>
+ 				<td align = "center">
+ 					<input type="text" id="sumitter"/>
+ 				</td>
+ 			</tr>
+ 			
+ 		</table>
+
+		<fieldset align = "center">
+			<legend>the menu</legend>
+			<ol id="menulist" align = "center">
+			</ol>
+		</fieldset>
+		
+		<script type="text/javascript">
+		 
+			var confirmButton = document.getElementById("menubutton");
+
+			confirmButton.onclick = function(){
+
+				var menuText = document.getElementById("menutext").value;
+				var menuNum = document.getElementById("menunum").value;
+				var sumitterName = document.getElementById("sumitter").value;
+				var date = new Date();
+
+				var blank_pattern = /^\s+|\s+$/g;
+				var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?.]/gi;
+
+				var menuList = document.getElementById("menulist");
+				var myNewList = document.createElement("li");
+              
+                if( menuText.replace( blank_pattern, '' ) == "" ){
+                   alert(' 공백만 입력되었습니다 ');
+                   return false;
+                }
+        
+				if( special_pattern.test(menuText) == true ){
+    				alert('특수문자는 사용할 수 없습니다.');
+    				return false;
+				}
+            
+				menuList.appendChild(myNewList);
+				
+				myNewList.innerHTML = menuText + " : " + menuNum + "ea" + " 신청자 : " + sumitterName + " Date: " + date;
+
+			};
+		</script>
+		<form action="/process-menu" method="GET">
+  			<fieldset>
+    			<legend>Personal information:</legend>
+    			First name:<br>
+    			<input type="text" name="firstname" value="Mickey"><br>
+    			Last name:<br>
+    			<input type="text" name="lastname" value="Mouse"><br><br>
+    		<input type="submit" value="Submit">
+  			</fieldset>
+		</form>
+
+	</body>
+</html>
